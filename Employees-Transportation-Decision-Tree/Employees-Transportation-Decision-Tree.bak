@@ -1,0 +1,432 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2018.1">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="174" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" FileFormat="19" SearchSubDirs="False" RecordLimit="">\\Mac\Home\Desktop\COURSES\NANODEGREE DATA ANALYST\3 - CLASSIFICATION MODELS\Employees-Transportation-Decision-Tree\employees-transporatationdata.yxdb</File>
+          <FormatSpecificOptions />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>employees-transporatationdata.yxdb</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Employee ID" source="File: C:\Users\rsnow\Documents\My Tableau Repository (Beta)\Datasources\Sample - Superstore Subset (Excel).xlsx|`Orders$`" type="Int32" />
+            <Field name="GENDER" size="1" source="Formula: IF IsNull([GENDER])&#xA;THEN 'M'&#xA;ELSE [GENDER]&#xA;ENDIF" type="String" />
+            <Field description="Formula: IF [COMBINED AGE] = '0'&#xA;THEN [Row-1:COMBINED AGE]&#xA;ELSE&#xA;[COMBINED AGE]&#xA;ENDIF" name="Age" source="Formula: IF [COMBINED AGE] = '0'&#xA;THEN [Row-1:COMBINED AGE]&#xA;ELSE&#xA;[COMBINED AGE]&#xA;ENDIF" type="Double" />
+            <Field name="MARITAL STATUS" size="2" source="Formula: IF [MARITAL STATUS] = 'U'&#xA;THEN 'S'&#xA;ELSE [MARITAL STATUS]&#xA;ENDIF" type="String" />
+            <Field name="DriveDistanceMiles" source="Distance: DriveDistance Source=Employee_SpObj Destination=Office_SpObj DataSet=Latest:TeleAtlas_US Optimization=Distance Maximum=100" type="Double" />
+            <Field name="Mode" size="64" source="Formula: (Multiple Sources)" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings>
+        <Position x="186" y="174" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="estimation pct">70</Value>
+          <Value name="validation pct">30</Value>
+          <Value name="rand seed">1</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="Predictive Tools\Create_Samples.yxmc" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings>
+        <Position x="330" y="162" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Model Name">DT_MODE</Value>
+          <Value name="Y Var">Mode</Value>
+          <Value name="X Vars">GENDER + Age + MARITAL STATUS + DriveDistanceMiles</Value>
+          <Value name="use.weights">False</Value>
+          <Value name="select.weights">Employee ID</Value>
+          <Value name="cp">Auto</Value>
+          <Value name="select.type">False</Value>
+          <Value name="classification">False</Value>
+          <Value name="use.gini">True</Value>
+          <Value name="use.information">False</Value>
+          <Value name="regression">False</Value>
+          <Value name="min.split">20</Value>
+          <Value name="min.bucket">7</Value>
+          <Value name="usesurrogate.0">True</Value>
+          <Value name="usesurrogate.1">False</Value>
+          <Value name="usesurrogate.2">False</Value>
+          <Value name="total.correct">True</Value>
+          <Value name="percent.correct">False</Value>
+          <Value name="xval.folds">10</Value>
+          <Value name="max.depth">20</Value>
+          <Value name="max.bins" />
+          <Value name="tree.plot">False</Value>
+          <Value name="Counts">True</Value>
+          <Value name="Proportions">False</Value>
+          <Value name="Branch Dist">False</Value>
+          <Value name="tree.inches">True</Value>
+          <Value name="tree.in.w">5.50</Value>
+          <Value name="tree.in.h">5.50</Value>
+          <Value name="tree.centimeters">False</Value>
+          <Value name="tree.cm.w">13.00</Value>
+          <Value name="tree.cm.h">14.95</Value>
+          <Value name="tree.graph.resolution">1x</Value>
+          <Value name="tree.pointsize">8</Value>
+          <Value name="prune.plot">False</Value>
+          <Value name="prune.inches">True</Value>
+          <Value name="prune.in.w">5.50</Value>
+          <Value name="prune.in.h">5.50</Value>
+          <Value name="prune.centimeters">False</Value>
+          <Value name="prune.cm.w">13.00</Value>
+          <Value name="prune.cm.h">14.95</Value>
+          <Value name="prune.graph.resolution">1x</Value>
+          <Value name="prune.pointsize">10</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>Decision Tree (3)</Name>
+          <AnnotationText>DT_MODE</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="Predictive Tools\Decision_Tree.yxmc" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="522" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\JOSECA~1\AppData\Local\Temp\Engine_7804_5a8a5df3aab94d7bb8101558d5d8acff_\Engine_628_e8dbdfb34bd3453881950e8f15f92267_.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="Score">
+        <Position x="414" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="modelChoice">Local Model</Value>
+          <Value name="score field">Mode_Predicted</Value>
+          <Value name="is oversampled">False</Value>
+          <Value name="oversampled value">
+          </Value>
+          <Value name="original percent">2</Value>
+          <Value name="log y">False</Value>
+          <Value name="prediction.interval">False</Value>
+          <Value name="interval.level">95</Value>
+          <Value name="append.xdf">False</Value>
+          <Value name="num.records">256000</Value>
+          <Value name="credentials">
+          </Value>
+          <Value name="models">
+          </Value>
+          <Value name="page">
+          </Value>
+          <Value name="errorStatus">
+          </Value>
+          <Value name="modelDetailJSON">
+          </Value>
+          <Value name="modelDetails">{"Name":"","Owner":"","Status":"","Id":"","LastDeployment":"","LastUpdated":"","LatestVersion":"","ActiveVersion":"","NumReplications":"","NumVersions":""}</Value>
+          <Value name="promoteURL">
+          </Value>
+          <Value name="username">
+          </Value>
+          <Value name="model_name">
+          </Value>
+          <Value name="model_owner">
+          </Value>
+          <Value name="apiKey">
+          </Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="Score\Supporting_Macros\score-engine.yxmc" EngineDll="Macro" EngineDllEntryPoint="Score\Supporting_Macros\score-engine.yxmc" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="522" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\JOSECA~1\AppData\Local\Temp\Engine_7804_5a8a5df3aab94d7bb8101558d5d8acff_\Engine_628_d2fdcc8efa2a4c07a4f6c1e6baafe0ab_.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings>
+        <Position x="138" y="6" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Select Fields">Employee ID=True,GENDER=True,Age=True,MARITAL STATUS=True,DriveDistanceMiles=True,Mode=True</Value>
+          <Value name="Sample Data">False</Value>
+          <Value name="Number">True</Value>
+          <Value name="NNumber">5000</Value>
+          <Value name="Percent">False</Value>
+          <Value name="NPercent">10</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings Macro="Predictive Tools\Field_Summary_Report.yxmc" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="270" y="18" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\JOSECA~1\AppData\Local\Temp\Engine_7804_5a8a5df3aab94d7bb8101558d5d8acff_\Engine_628_e5bf4bed68ed4162922434465221c351_.yxdb</TempFile>
+          <Layout>
+            <View1>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings>
+        <Position x="522" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="target.level" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="predictions">
+          <RecordInfo>
+            <Field name="Actual" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="DT_MODE" size="1073741823" source="R-DATA:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="error_measures">
+          <RecordInfo>
+            <Field name="Model" size="1073741823" source="R-DATA:" type="V_WString" />
+            <Field name="Accuracy" source="R-DATA:" type="Double" />
+            <Field name="Accuracy_Bike" source="R-DATA:" type="Double" />
+            <Field name="Accuracy_Car" source="R-DATA:" type="Double" />
+            <Field name="Accuracy_Public Transportation" source="R-DATA:" type="Double" />
+            <Field name="F1" source="R-DATA:" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+        <MetaInfo connection="Report">
+          <RecordInfo>
+            <Field name="Group" size="64" source="Formula: (Multiple Sources)" type="V_String" />
+            <Field name="Layout" size="2147483647" source="Report:Layout:" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings Macro="Model Comparison.yxmc" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="618" y="138" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\JOSECA~1\AppData\Local\Temp\Engine_7804_5a8a5df3aab94d7bb8101558d5d8acff_\Engine_628_484f59aae97e492d838217c766cd6131_.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="546" y="18" width="264" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Overfitting Decision Tree Model</Text>
+          <Font name="Segoe UI" size="12" style="0" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="7" Connection="Field Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Estimation" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Validation" />
+      <Destination ToolID="5" Connection="Data" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="5" Connection="Model" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Validation" />
+      <Destination ToolID="9" Connection="Data" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="9" Connection="Models" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Interactive" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="Interactive" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Report" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Employees-Transportation-Decision-Tree</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
